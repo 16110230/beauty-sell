@@ -23,6 +23,7 @@ if(empty($_SESSION['username'])){
         if($_GET['m'] == 'product'){
             $title   = 'Product';
             $content = VIEW.'productView.php';
+            $js = JS.'prodDetailJs.php';
             include VIEW.'template.php';
         }
         if($_GET['m'] == 'product/detail'){
@@ -31,6 +32,7 @@ if(empty($_SESSION['username'])){
             $product = $con->execute_query('select * from t_product where id = '.$id.'')->fetch_assoc();
             $title   = 'Product';
             $content = VIEW.'productDetailView.php';
+            $js = JS.'prodDetailJs.php';
             include VIEW.'template.php';
         }
     }

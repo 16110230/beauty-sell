@@ -31,15 +31,15 @@
                    <div class="d-flex align-items-center mb-4 pt-2">
                        <div class="input-group quantity mr-3" style="width: 130px;">
                            <div class="input-group-btn">
-                               <button class="btn btn-primary btn-minus">
+                               <a class="btn btn-primary btn-minus" id="btnMinus">
                                    <i class="fa fa-minus"></i>
-                               </button>
+                               </a>
                            </div>
-                           <input type="text" name="qty" class="form-control bg-secondary border-0 text-center" value="1">
+                           <input type="text" id="qty" name="qty" class="form-control bg-secondary border-0 text-center" value="1">
                            <div class="input-group-btn">
-                               <button class="btn btn-primary btn-plus">
+                               <a class="btn btn-primary btn-plus" id="btnPlus">
                                    <i class="fa fa-plus"></i>
-                               </button>
+                               </a>
                            </div>
                        </div>
                        <button type="submit" name="add" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To
@@ -59,18 +59,29 @@
                                                             where tu.id = '$idUser' 
                                                             and tr.is_paid = '$paid'
                                                             ")->num_rows;
-//                        var_dump($check);die();
-                        if($check = 0){
+
+                        if($check >= 0){
                             $createChart = $con->execute_query("insert into t_chart (user_id, is_active, version, created_at, created_by ) values ('$idUser', true, 1, CURRENT_TIMESTAMP, '$idUser')");
                             $chartId = $con->execute_query('select id from t_chart where user_id = '.$_SESSION['idUser'].' order by id desc limit 1')->fetch_assoc();
                             $idChart = $chartId['id'];
+
                             $con->execute_query("insert into t_chart_dtl (chart_id, prod_id, qty, is_active, version, created_at, created_by) 
                                                                             values('$idChart', '$idprod' ,'$qty' , true, 1,  CURRENT_TIMESTAMP,'$idUser')");
+                        ?>
+                            <script>
+                                alert("Item Added !")
+                            </script>
+                            <?php
                         }else{
                             $chartId = $con->execute_query('select id from t_chart where user_id = '.$_SESSION['idUser'].' order by id desc limit 1')->fetch_assoc();
                             $idChart = $chartId['id'];
                             $con->execute_query("insert into t_chart_dtl (chart_id, prod_id, qty, is_active, version, created_at, created_by) 
                                                                             values($idChart, $idprod , $qty , true, 1,  CURRENT_TIMESTAMP ,$idUser)");
+                        ?>
+                            <script>
+                                alert("Item Added !")
+                            </script>
+                            <?php
                         }
                     }
                    ?>
@@ -112,7 +123,7 @@
                     <div class="product-img position-relative overflow-hidden">
                         <img class="img-fluid w-100" src="asset/img/uploads/<?= $data['prod_img']?>" alt="">
                         <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href="?m=product/detail&id=<?=$data['id']?>"><i class="fa fa-shopping-cart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
                         </div>
                     </div>
@@ -131,3 +142,4 @@
         ?>
     </div>
 </div>
+

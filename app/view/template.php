@@ -175,6 +175,9 @@
 
 <!-- Template Javascript -->
 <script src="asset/js/main.js"></script>
+
+    <?php include $js ?>
+
 </body>
 
 </html>

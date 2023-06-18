@@ -18,11 +18,13 @@ if(empty($_SESSION['username'])){
     }else if($_SESSION['userType'] == userc){
         if($_GET['m'] == 'chart'){
             $title   = 'Chart';
+            $js = JS.'prodDetailJs.php';
             $content = VIEW.'chartView.php';
             include VIEW.'template.php';
         }
         if($_GET['m'] == 'chart/delete'){
             $idchrtdtl = $_GET['id-dtl'];
+            $js = JS.'prodDetailJs.php';
             $con->execute_query("update t_chart_dtl set is_active = false where  id= '$idchrtdtl'");
             header('Location: ' . "?m=chart&id=".$id, true, "303");
         }

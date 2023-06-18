@@ -3,6 +3,8 @@
     if(empty($_SESSION['username'])){
         $title   = 'Login';
         $content = VIEW.'loginView.php';
+        $js = JS.'prodDetailJs.php';
+        $data = $con->execute_query("select * from t_prod_cat where is_active = true");
         include VIEW.'template.php';
     }else{
         if($_SESSION['userType'] == adminc || $_SESSION['userType'] == superAdmin){

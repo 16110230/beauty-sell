@@ -27,7 +27,7 @@
                     foreach ($data as $key => $datas){
                         ?>
                         <tr>
-                            <td class="align-middle"><img src="<?=UPLOADS.$datas['prod_img']?>" alt="" style="width: 50px;"> Product Name</td>
+                            <td class="align-middle"><img src="<?=UPLOADS.$datas['prod_img']?>" alt="" style="width: 50px;"> <?=$datas['prod_name']?></td>
                             <td class="align-middle">Rp.<?=$datas['prod_price']?>,00</td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">

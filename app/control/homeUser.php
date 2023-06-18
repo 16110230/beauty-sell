@@ -7,5 +7,6 @@ $productRecent = $con->execute_query("select * from t_product where is_active  =
 $productFeatured = $con->execute_query("select * from t_product where is_active  = true order by rand() desc limit 8");
 $title   = 'Home';
 $content = VIEW.'homeView.php';
+$js = JS.'prodDetailJs.php';
 include VIEW.'template.php';
 ?>

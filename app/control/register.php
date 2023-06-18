@@ -3,6 +3,8 @@ session_start();
 if(empty($_SESSION['username'])){
     $title   = 'Register';
     $content = VIEW.'registerView.php';
+    $js = JS.'prodDetailJs.php';
+
     include VIEW.'template.php';
 }else{
     if($_SESSION['userType'] == adminc || $_SESSION['userType'] == superAdmin){
