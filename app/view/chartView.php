@@ -36,7 +36,7 @@
 <!--                                            <i class="fa fa-minus"></i>-->
 <!--                                        </button>-->
 <!--                                    </div>-->
-                                    <input type="text" class="form-control form-control-sm bg-secondary border-0 text-center" value="1">
+                                    <input type="text" class="form-control form-control-sm bg-secondary border-0 text-center" value="<?= $datas['qty']?>" readonly>
 <!--                                    <div class="input-group-btn">-->
 <!--                                        <button class="btn btn-sm btn-primary btn-plus">-->
 <!--                                            <i class="fa fa-plus"></i>-->

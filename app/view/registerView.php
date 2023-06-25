@@ -31,19 +31,22 @@
                 <button type="submit" class="btn btn-primary pull-right ml-1" name="Submit" id="submit">REGISTER</button>
                 <?php
                 if(isset($_POST['Submit'])){
-                    $id = $_POST['id'];
+//                    $id = $_POST['id'];
                     $name = $_POST['name'];
                     $email = $_POST['email'];
                     $phone = $_POST['phone'];
                     $address = $_POST['address'];
                     $pass = md5(md5($_POST['password']));
                     $updated_by = "REGISTER";
+                    $idUser = $con->execute_query("select ut.id from t_user_type ut where ut.user_type_name = 'USER'")->fetch_assoc();
+//                    var_dump($idUser['id']);die();
+                    $idSend = $idUser['id'];
 
                     $inserAdmin = mysqli_query($con, "insert into t_user 
                                              (user_type_id, user_full_name, user_email, 
                                               user_pass, user_address, created_by, 
                                               created_at, is_active, user_phone, version) 
-                                             values(3, '$name', '$email', '$pass', '$address', '$updated_by', 
+                                             values($idSend, '$name', '$email', '$pass', '$address', '$updated_by', 
                                                     CURRENT_TIMESTAMP, true , '$phone', 0)");
 
                     ?>
